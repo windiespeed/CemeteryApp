@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
 
-      <header className="container-fluid"><Navbar /></header>
+      <header className="container-fluid sticky top-0 z-100"><Navbar /></header>
 
         {/* Map + Sidebar layout */}
         <div className="flex flex-col md:flex-row-reverse flex-grow text-gray-900 bg-white">

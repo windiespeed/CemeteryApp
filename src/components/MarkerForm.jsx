@@ -190,7 +190,7 @@ export default function MarkerForm({ selectedMarker, onFormSubmit, onDelete, lat
 
                 <button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                    className="bg-gray-800 hover:bg-gray-600 text-white px-4 py-2 rounded"
                 >
                     {selectedMarker?.id ? "Update Marker" : "Add Marker"}
                 </button>
