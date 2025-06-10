@@ -1,10 +1,22 @@
 // src/components/Navbar.jsx
 import React from "react";
+import SearchBar from "./SearchBar";
 
-export default function Navbar() {
+function Navbar() {
     return (
-        <nav className="bg-blue-700 text-white px-4 py-3 shadow-md z-50">
-            <h1 className="text-xl font-bold">Cemetery Map App</h1>
+        <nav className="flex items-center justify-between bg-gray-800 text-white px-6 py-4 shadow-md">
+            {/* Logo/Title */}
+            <div className="text-xl font-bold tracking-wide">Cemetery Map</div>
+
+            {/* Search */}
+            <div className="flex items-center">
+                <SearchBar />
+            </div>
+
+            {/* Future buttons / links */}
+            <div></div>
         </nav>
     );
 }
+
+export default Navbar;
