@@ -13,49 +13,44 @@ function App() {
   const [clickedLatLng, setClickedLatLng] = useState(null);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
 
-      <header class="container-fluid"><Navbar /></header>
+      <header className="container-fluid"><Navbar /></header>
 
-      <div className="flex flex-col md:flex-row-reverse h-screen text-gray-900 bg-white">
+        {/* Map + Sidebar layout */}
+        <div className="flex flex-col md:flex-row-reverse flex-grow text-gray-900 bg-white">
+          <aside className="w-full md:w-96 bg-white flex-shrink-0 flex flex-col overflow-y-auto md:h-full">
+            <div className="flex-1 overflow-y-auto p-4 space-y-6 overflow-x-hidden">
+              <MarkerSidebar
+                selectedMarker={selectedMarker}
+                onFormSubmit={fetchMarkers}
+                onDelete={fetchMarkers}
+                latLng={clickedLatLng}
+                markers={markers}
+                onSelectMarker={(marker) => {
+                  setSelectedMarker(marker);
+                  setClickedLatLng(null);
+                }}
+              />
+            </div>
+          </aside>
 
-        {/* Sidebar (on right in desktop, on top in mobile) */}
-        <aside className="w-full md:w-96 bg-white flex-shrink-0 flex flex-col overflow-y-auto md:h-full">
-
-          <div className="flex-1 overflow-y-auto p-4 space-y-6 overflow-x-hidden">
-            {/* Marker Form */}
-            <MarkerSidebar
-              selectedMarker={selectedMarker}
-              onFormSubmit={fetchMarkers}
-              onDelete={fetchMarkers}
-              latLng={clickedLatLng}
+          <main className="flex-grow">
+            <MainMap
               markers={markers}
-              onSelectMarker={(marker) => {
-                setSelectedMarker(marker);
-                setClickedLatLng(null);
+              onMapClick={(latlng) => {
+                setClickedLatLng(latlng);
+                setSelectedMarker(null);
               }}
+              onMarkerClick={setSelectedMarker}
             />
-          </div>
+          </main>
+        </div>
 
-        </aside>
+  <footer className="pb-9"><Footer /></footer>
 
-        {/* Main Map Area */}
-        <main className="flex-1 h-96 md:h-full">
-          <MainMap
-            markers={markers}
-            onMapClick={(latlng) => {
-              setClickedLatLng(latlng);
-              setSelectedMarker(null); // Clear form for new marker
-            }}
-            onMarkerClick={setSelectedMarker}
-          />
-        </main>
+</div>
 
-      </div>
-
-      <footer><Footer /></footer>
-
-    </div>
   );
 }
 
